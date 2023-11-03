@@ -1,0 +1,15 @@
+{
+  "name": "sqliap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+	"start": "node app.js"
+  },
+  "author": "matrikater (Joel W.)",
+  "license": "LGPL-2.1-only",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
