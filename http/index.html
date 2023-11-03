@@ -26,6 +26,54 @@
 				});
 			}
 		</script>
+		<style>
+			body, html {
+				height: 100%;
+				margin: 0;
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #f7f7f7;
+			}
+		
+			form {
+				width: 100%;
+				max-width: 400px;
+				background: white;
+				padding: 2em;
+				border-radius: 5px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+		
+			input[type=text], input[type=password] {
+				width: calc(100% - 20px);
+				padding: 10px;
+				margin-bottom: 20px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+			}
+		
+			input[type=submit] {
+				width: calc(100% - 20px);
+				padding: 10px;
+				background-color: #5cb85c;
+				border: none;
+				border-radius: 3px;
+				color: white;
+				font-weight: bold;
+				cursor: pointer;
+			}
+		
+			input[type=submit]:hover {
+				background-color: #4cae4c;
+			}
+		
+			input[type=submit]:active {
+				background-color: #5cb85c;
+				transform: translateY(1px);
+			}
+		</style>		
 	</head>
 	<body>
 		<form onsubmit="submitted()">
