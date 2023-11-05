@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 const { exec } = require('child_process');
@@ -59,9 +59,25 @@ app.post('/login', (req, res) => {
 	});
 });
 
+
+
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
+
+
+
+app.get('/index.css', (req, res) => {
+	res.sendFile(__dirname + '/index.css');
+});
+
+
+
+app.get('/index.js', (req, res) => {
+	res.sendFile(__dirname + '/index.js');
+});
+
+
 
 app.listen(3000, () => {
 	console.log('Server started on http://localhost:3000 😎');

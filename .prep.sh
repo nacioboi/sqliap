@@ -2,6 +2,17 @@
 
 # This file is used to get the latest node version from the nodejs.org website
 
+cd ./http
+
+npm install express mysql2
+
+if [[ "$?" != "0" ]]; then
+	echo "Failed to install dependencies"
+	exit 1
+fi
+
+cd ..
+
 [[ -f ./node-latest-linux.tar.gz ]] && exit 0
 
 ARCH=$(uname -m)
@@ -23,14 +34,5 @@ elif [[ "$ARCH" == "x86_64" ]]; then
 	fi
 else
 	echo "Unsupported architecture: $ARCH"
-	exit 1
-fi
-
-cd ./http
-
-npm install express mysql2
-
-if [[ "$?" != "0" ]]; then
-	echo "Failed to install dependencies"
 	exit 1
 fi

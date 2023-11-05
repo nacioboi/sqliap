@@ -1,0 +1,152 @@
+body, html {
+	height: 100%;
+	width: calc(100% - 50px);
+	margin: 0;
+	padding-right: 25px;
+	padding-left: 25px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #333;
+	font-family: 'Sometype Mono', monospace;
+	color: #fff;
+}
+
+button, input[type=submit] {
+	cursor: pointer;
+}
+
+.setting {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.setting-option {
+	display: flex;
+	margin-left: 3px;
+	align-items: center;
+	color: #ddd;
+}
+
+.setting-description p {
+	margin-top: 4px;
+	font-size: 12px;
+	color: #aaa;
+}
+
+form {
+	max-width: 275px;
+	min-height: 150px;
+	margin: 10px auto;
+	background: #444;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input[type=text], input[type=password], textarea {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	background: #ddd;
+	color: #333;
+}
+
+.output {
+	width: 90%;
+	max-width: 500px;
+	margin: 20px auto;
+	background: #222;
+	color: #0f0;
+	padding: 10px;
+	border: 1px solid #0a0;
+	border-radius: 4px;
+	overflow: auto;
+}
+
+.settings-form {
+	height: 80%;
+	top: 50; /* If you want it right at the top */
+	position: absolute; /* Keeps the form out of the document flow */
+	z-index: 10; /* Keeps it above other content */
+	background-color: #222; /* The color you already had */
+	transition: all 0.3s ease; /* Keeps the transition effect you already had */
+}
+
+.settings-form.hidden {
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-20px);
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: calc(100% - 50px);
+	padding: 10px;
+	box-sizing: border-box; /* To ensure padding does not affect the total width */
+	position: absolute;
+	top: 0;
+	background-color: #333; /* Optional: to give the header a distinct look */
+	z-index: 10;
+}
+
+.title {
+	color: white;
+	font-size: 24px;
+	margin: 0; /* Remove default margins from h1 tag */
+	flex-grow: 1; /* Allows title to take up available space between buttons */
+	text-align: center;
+}
+
+.subtitle {
+	color: #aaa;
+	font-size: 12px;
+	margin: 0;
+	text-align: center;
+}
+
+.settings-button, .github-link {
+	padding: 5px 15px; /* Adjust padding to make buttons smaller */
+	margin: 0 10px; /* Adjust margins to space out buttons */
+	font-size: 16px;
+	background-color: #444;
+	color: white;
+	text-decoration: none; /* Remove underline from link */
+	border-radius: 4px;
+	border: none;
+	transition: background-color 0.3s ease;
+}
+
+.settings-button:hover, .github-link:hover {
+	background-color: #555;
+}
+
+.main-container {
+	display: flex; /* Establishes a flex container */
+	justify-content: center; /* Centers children horizontally when there's extra space */
+	align-items: flex-start; /* Aligns children at the start of the cross axis */
+	width: 100%; /* Takes full width of the container */
+	padding: 10px; /* Padding around the entire content */
+	box-sizing: border-box; /* Includes padding in the width */
+}
+
+.login-form {
+	width: 300px; /* Or your desired fixed width */
+	margin-right: 10px; /* Optional space between form and output area */
+}
+
+.output-area {
+	flex-grow: 1; /* Takes up the remaining space */
+	display: none; /* Hidden by default, can be toggled with JS */
+	background-color: #222; /* Styling to match your theme */
+	color: #fff; /* Text color */
+	padding: 10px; /* Padding inside the textarea */
+	border-radius: 4px; /* Rounded corners */
+	margin-left: 10px; /* Optional space between form and output area */
+}

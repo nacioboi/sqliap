@@ -8,13 +8,13 @@ check_sudo:
 	fi
 
 prep:
-	./.get-latest-node.sh
+	./.prep.sh
 
 it: check_sudo
-	sudo docker build -t my-mysql-image .
+	sudo docker build -t mysqldi .
 
 do: check_sudo
-	./.start_container.sh
+	./.container_wrapper.sh
 
 clean:
 	rm node-latest-linux*

@@ -1,85 +1,80 @@
 <html version="5">
-	<head>
-		<title>SQL Injection Attack Playground</title>
-		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-		<script type="text/javascript">
-			function submitted() {
-				event.preventDefault(); // Stop form from submitting
+<head>
+	<title>SQL Injection Attack Playground</title>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="index.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:wght@600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<div class="header">
+		<button class="settings-button" onclick="showSettings()">Settings</button>
+		<div>
+			<h1 class="title">SQL Injection Playground</h1>
+			<h5 class="subtitle">v1.0</h5>
+		</div>
+		<a href="https://github.com/nacioboi/sqliap" class="github-link" target="_blank">GitHub</a>
+	</div>
+	
+	<form class="settings-form hidden" onsubmit="return false;">
+		<div class="setting">
+			<div class="setting-option">
+				<input type="checkbox" id="sync-enabled" onchange="toggleSync(this.checked)">
+				<label for="sync-enabled">Sync</label>
+			</div>
+			<div class="setting-description">
+				<p>
+					Sync will automatically save any changes made inside the username and password fields
+					to the browser via cookies.
+				</p>
+			</div>
+		</div>
+		<div class="setting">
+			<div class="setting-option">
+				<input type="checkbox" id="autorun-enabled" onchange="toggleAutorun(this.checked)">
+				<label for="autorun-enabled">Autorun</label>
+			</div>
+			<div class="setting-description">
+				<p>
+					Autorun will automatically try to submit the login form whenever the username or password fields change.
+				</p>
+			</div>
+		</div>
+		<div class="setting">
+			<div class="setting-option">
+				<input type="checkbox" id="output-area-enabled" onchange="toggleOutputArea(this.checked)">
+				<label for="output-area-enabled">Enable Output Area</label>
+			</div>
+			<div class="setting-description">
+				<p>
+					Enable Output Area will show the output of the login form submission in a text area to the right of the form.
+					If this option is disabled, a simple banner will be shown instead.
+					If the option is enabled, you will also see (inside the text area) the output of the SQL query.
+				</p>
+			</div>
+		</div>
+		<div class="setting">
+			<div class="setting-option">
+				<input type="checkbox" id="terminal-enabled" onchange="toggleTerminal(this.checked)">
+				<label for="terminal-enabled">Show Terminal</label>
+			</div>
+			<div class="setting-description">
+				<p>
+					Show Terminal will provide an in-browser interface to interact with the Docker container's command line.
+				</p>
+			</div>
+		</div>
+	</form>
 
-				const username = document.getElementsByName("username")[0].value;
-				const password = document.getElementsByName("password")[0].value;
-
-				// ajax is a function that sends a request to the server.
-				// The server will then respond with a success or failure message.
-				$.ajax({
-					type: "POST",
-					url: "http://localhost:3000/login",
-					data: {username, password},
-					success: function(response){
-						if(response.success === true) {
-							console.log(response.diagnostic)
-							alert(`Logged in. 🎉\n${response.diagnostic}`);
-						} else {
-							alert(`Failed to log in!!\n${response.diagnostic}`);
-						}
-					}
-				});
-			}
-		</script>
-		<style>
-			body, html {
-				height: 100%;
-				margin: 0;
-				font-family: Arial, sans-serif;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				background-color: #f7f7f7;
-			}
-		
-			form {
-				width: 100%;
-				max-width: 400px;
-				background: white;
-				padding: 2em;
-				border-radius: 5px;
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			}
-		
-			input[type=text], input[type=password] {
-				width: calc(100% - 20px);
-				padding: 10px;
-				margin-bottom: 20px;
-				border: 1px solid #ccc;
-				border-radius: 3px;
-			}
-		
-			input[type=submit] {
-				width: calc(100% - 20px);
-				padding: 10px;
-				background-color: #5cb85c;
-				border: none;
-				border-radius: 3px;
-				color: white;
-				font-weight: bold;
-				cursor: pointer;
-			}
-		
-			input[type=submit]:hover {
-				background-color: #4cae4c;
-			}
-		
-			input[type=submit]:active {
-				background-color: #5cb85c;
-				transform: translateY(1px);
-			}
-		</style>		
-	</head>
-	<body>
-		<form onsubmit="submitted()">
-			<input type="text" name="username" placeholder="Username" />
-			<input type="password" name="password" placeholder="Password" />
+	<div class="main-container">
+		<form class="login-form" onsubmit="submitted()">
+			<input type="text" id="username-field" placeholder="Username" />
+			<input type="password" id="password-field" placeholder="Password" />
 			<input type="submit" value="Login" />
 		</form>
-	</body>
+		<textarea class="output-area" id="output-area" cols="30" rows="10"></textarea>
+	</div>
+</body>
 </html>

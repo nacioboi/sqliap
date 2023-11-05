@@ -1,5 +1,10 @@
 # TODO
 
+- [ ] Inside the readme does not include starting the mysqld service.
+
+
+
+
 - [ ] Provide more instructions on how to install docker for debian based systems:
   - for x64 and arm64 separately.
 
