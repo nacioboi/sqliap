@@ -1,5 +1,29 @@
 # TODO
 
+## very next thing
+
+- [ ] The prep.sh did not work, `/usr/local/bin/make` inside the container will not execute.
+
+>bash: /usr/local/bin/make: cannot execute binary file: Exec format error
+
+we must install make and git inside a separate container, then copy the binaries to the main container.
+
+Otherwise, we're going to be building a different system environment than the one the container running on.
+
+Probs because building on macos and running on linux.
+
+## bullshit
+
+
+
+
+
+
+
+
+
+
+
 - [ ] Inside the readme does not include starting the mysqld service.
 
 
