@@ -7,15 +7,17 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:wght@600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" href="node_modules/xterm/css/xterm.css" />
+	<script src="node_modules/xterm/lib/xterm.js"></script>
 </head>
 <body>
 	<div class="header">
-		<button class="settings-button" onclick="showSettings()">Settings</button>
+		<button onclick="showSettings()">Settings</button>
 		<div>
 			<h1 class="title">SQL Injection Playground</h1>
 			<h5 class="subtitle">v1.0</h5>
 		</div>
-		<a href="https://github.com/nacioboi/sqliap" class="github-link" target="_blank">GitHub</a>
+		<button onclick="window.open('https://github.com/nacioboi/sqliap', '_blank')">GitHub</button>
 	</div>
 	
 	<form class="settings-form hidden" onsubmit="return false;">
@@ -49,8 +51,8 @@
 			</div>
 			<div class="setting-description">
 				<p>
-					Enable Output Area will show the output of the login form submission in a text area to the right of the form.
-					If this option is disabled, a simple banner will be shown instead.
+					Enable Output Area will show the output of the login form submission in a text area to the right of the form.<br/>
+					If this option is disabled, a simple banner will be shown instead.<br/>
 					If the option is enabled, you will also see (inside the text area) the output of the SQL query.
 				</p>
 			</div>
@@ -76,5 +78,7 @@
 		</form>
 		<textarea class="output-area" id="output-area" cols="30" rows="10"></textarea>
 	</div>
+
+	<div id="terminal-container"></div>
 </body>
 </html>

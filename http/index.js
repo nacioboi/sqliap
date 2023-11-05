@@ -1,3 +1,7 @@
+const socket = new WebSocket('ws://localhost:3000/terminal');
+
+const terminal = new Terminal();
+
 function submitted() {
 	console.log(`[submitted]: called...`);
 	event.preventDefault();
@@ -141,6 +145,9 @@ function toggleSync(isEnabled) {
 	} else {
 		$('#username-field, #password-field').off('input', updateSyncedCredentials);
 		console.log(`[toggleSync] disabled:[updateSyncedCredentials]`);
+		console.log(`[toggleSync] clearing cookies...`);
+		saveCookie('username', '');
+		saveCookie('password', '');
 	}
 }
 
@@ -180,13 +187,9 @@ function toggleOutputArea(isEnabled) {
 	if (isEnabled) {
 		console.log(`[toggleOutputArea] showing output area...`);
 		outputArea.style.display = 'block'; // Show output area
-		loginForm.style.flex = 'none'; // Stop the login form from growing
-		loginForm.style.width = '300px'; // Set the login form width to a fixed value
 	} else {
 		console.log(`[toggleOutputArea] hiding output area...`);
 		outputArea.style.display = 'none'; // Hide output area
-		loginForm.style.flex = ''; // Allow the login form to be flexible (back to default)
-		loginForm.style.width = ''; // Allow the login form to have its original width (back to default)
 	}
 }
 
@@ -205,15 +208,29 @@ function showTerminal() {
 	// Initialize and show the terminal. This will likely involve creating an instance
 	// of the terminal library and connecting it to the WebSocket or SSH stream.
 	console.log(`[showTerminal] called...`);
+	document.getElementById('terminal-container').style.display = 'block';
 }
 
 function hideTerminal() {
 	// Hide the terminal and clean up if necessary.
 	console.log(`[hideTerminal] called...`);
+	document.getElementById('terminal-container').style.display = 'none';
+	terminal.dispose();
+	socket.close();
 }
+
+socket.onopen = () => {
+	terminal.open(document.getElementById('terminal-container'));
+	terminal.onData(data => socket.send(data));
+};
+
+socket.onmessage = event => {
+  terminal.write(event.data);
+};
 
 window.onload = function () {
 	console.log(`[window.onload] called...`);
 	console.log(`[window.onload] calling loadSettings()...`);
+	setup();
 	loadSettings();
 };

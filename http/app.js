@@ -1,10 +1,12 @@
-const express = require('express');
+const { exec } = require('child_process');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+
+const express = require('express');
 const app = express();
-const { exec } = require('child_process');
-
-
+const expressWs = require('express-ws')(app);
+expressWs.applyTo(app);
+const pty = require('node-pty');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -81,4 +83,28 @@ app.get('/index.js', (req, res) => {
 
 app.listen(3000, () => {
 	console.log('Server started on http://localhost:3000 😎');
+});
+
+
+
+app.ws('/terminal', (ws, req) => {
+	const shell = pty.spawn(process.platform === 'win32' ? 'powershell.exe' : 'bash', [], {
+		name: 'xterm-color',
+		cols: 80,
+		rows: 30,
+		cwd: process.env.PWD,
+		env: process.env,
+	});
+
+	shell.on('data', function(data) {
+		ws.send(data);
+	});
+
+	ws.on('message', function(msg) {
+		shell.write(msg);
+	});
+
+	ws.on('close', function () {
+		shell.kill();
+	});
 });

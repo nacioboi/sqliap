@@ -12,6 +12,7 @@ prep:
 
 it: check_sudo
 	sudo docker build -t mysqldi .
+	sudo rm make-copy
 
 do: check_sudo
 	./.container_wrapper.sh

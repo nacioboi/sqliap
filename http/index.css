@@ -7,14 +7,24 @@ body, html {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	background-color: #333;
+	background-color: #222;
 	font-family: 'Sometype Mono', monospace;
-	color: #fff;
 }
 
 button, input[type=submit] {
 	cursor: pointer;
+	background-color: #555;
+	color: #000;
+	border-width: 1.5;
+	border-color: rgb(255,255,255,0.6);
+	padding: 9px;
+	font-family: 'Sometype Mono', monospace;
+	font-weight: 600;
+	border-radius: 3px;
+}
+
+button:hover, input[type=submit]:hover {
+	background-color: #666;
 }
 
 .setting {
@@ -27,23 +37,13 @@ button, input[type=submit] {
 	display: flex;
 	margin-left: 3px;
 	align-items: center;
-	color: #ddd;
+	color: #fff;
 }
 
 .setting-description p {
 	margin-top: 4px;
 	font-size: 12px;
-	color: #aaa;
-}
-
-form {
-	max-width: 275px;
-	min-height: 150px;
-	margin: 10px auto;
-	background: #444;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	color: #888;
 }
 
 input[type=text], input[type=password], textarea {
@@ -52,29 +52,22 @@ input[type=text], input[type=password], textarea {
 	margin: 10px 0;
 	border: 1px solid #aaa;
 	border-radius: 4px;
-	background: #ddd;
-	color: #333;
-}
-
-.output {
-	width: 90%;
-	max-width: 500px;
-	margin: 20px auto;
-	background: #222;
-	color: #0f0;
-	padding: 10px;
-	border: 1px solid #0a0;
-	border-radius: 4px;
-	overflow: auto;
+	background: #555;
+	font-family: 'SomeType Mono', monospace;
+	font-weight: 600;
 }
 
 .settings-form {
+	width: 85%;
 	height: 80%;
-	top: 50; /* If you want it right at the top */
+	padding: 15px;
+	top: 65; /* If you want it right at the top */
 	position: absolute; /* Keeps the form out of the document flow */
 	z-index: 10; /* Keeps it above other content */
-	background-color: #222; /* The color you already had */
+	background-color: #333; /* The color you already had */
 	transition: all 0.3s ease; /* Keeps the transition effect you already had */
+	border-radius: 8px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .settings-form.hidden {
@@ -92,12 +85,11 @@ input[type=text], input[type=password], textarea {
 	box-sizing: border-box; /* To ensure padding does not affect the total width */
 	position: absolute;
 	top: 0;
-	background-color: #333; /* Optional: to give the header a distinct look */
 	z-index: 10;
 }
 
 .title {
-	color: white;
+	color: #fff;
 	font-size: 24px;
 	margin: 0; /* Remove default margins from h1 tag */
 	flex-grow: 1; /* Allows title to take up available space between buttons */
@@ -105,48 +97,33 @@ input[type=text], input[type=password], textarea {
 }
 
 .subtitle {
-	color: #aaa;
+	color: #666;
 	font-size: 12px;
 	margin: 0;
 	text-align: center;
 }
 
-.settings-button, .github-link {
-	padding: 5px 15px; /* Adjust padding to make buttons smaller */
-	margin: 0 10px; /* Adjust margins to space out buttons */
-	font-size: 16px;
-	background-color: #444;
-	color: white;
-	text-decoration: none; /* Remove underline from link */
-	border-radius: 4px;
-	border: none;
-	transition: background-color 0.3s ease;
-}
-
-.settings-button:hover, .github-link:hover {
-	background-color: #555;
-}
-
 .main-container {
 	display: flex; /* Establishes a flex container */
-	justify-content: center; /* Centers children horizontally when there's extra space */
-	align-items: flex-start; /* Aligns children at the start of the cross axis */
 	width: 100%; /* Takes full width of the container */
 	padding: 10px; /* Padding around the entire content */
 	box-sizing: border-box; /* Includes padding in the width */
+	padding: 10px;
+	margin-top: 80px;
+	background-color: #404040;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.login-form {
-	width: 300px; /* Or your desired fixed width */
-	margin-right: 10px; /* Optional space between form and output area */
+.login-form, .output-area {
+	flex: 1;
+	min-width: 0;
+	margin: 5px;
 }
 
 .output-area {
-	flex-grow: 1; /* Takes up the remaining space */
-	display: none; /* Hidden by default, can be toggled with JS */
-	background-color: #222; /* Styling to match your theme */
-	color: #fff; /* Text color */
-	padding: 10px; /* Padding inside the textarea */
-	border-radius: 4px; /* Rounded corners */
-	margin-left: 10px; /* Optional space between form and output area */
+	background-color: #555;
+	display: none;
+	resize: none;
+	pointer-events: none;
 }
